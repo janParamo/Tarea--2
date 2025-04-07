@@ -1,0 +1,2 @@
+"En este caso se utiliza el __init__.py para inicializar el paquete busqueda, en este caso esta vacio porque no se requiere inicializar nada"
+"Y como tal aunque este vacio es suficiente para que el interprete de python lo reconozca como un paquete"

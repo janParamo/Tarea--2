@@ -1,33 +1,37 @@
-""""
-Ejercicio 1: Análisis de datos de ventas
+"""
+Ejercicio 6: Facturación y reportes de ventas
 
-Desarrollar un programa que procese un conjunto de registros de ventas para extraer información relevante. 
-Deben aplicar funciones internas como map, 
-filter y reduce para transformar y filtrar los datos, calculando totales y promedios.
+Crear una clase Factura que simule el proceso de facturación de una venta. 
+Proveer métodos para calcular el total de la venta, generar reportes simples y validar la integridad de la información.
 
-•	[ ] El programa procesa correctamente un conjunto de registros de ventas.
-•	[ ] Se utilizan las funciones map, filter y reduce para transformar y filtrar los datos.
-•	[ ] Se calculan correctamente los totales de ventas.
-•	[ ] Se calculan correctamente los promedios de ventas.
-•	[ ] El código es legible y está bien documentado.
-
+•	[ ] Se ha creado una clase Factura para simular el proceso de facturación.
+•	[ ] La clase Factura incluye métodos para calcular el total de la venta.
+•	[ ] Se generan reportes simples de ventas.
+•	[ ] Se valida la integridad de la información de la factura.
+•	[ ] El código es robusto y maneja posibles errores.
 """
 
-from functools import reduce # Importamos reduce para realizar operaciones de reducción en listas
+from functools import reduce
 
-# Lista de registros de ventas (cada venta es una tupla: (vendedor, producto, cantidad, precio_unitario))
-ventas = [
-    ("Ana", "Laptop", 2, 800),
-    ("Luis", "Mouse", 5, 20),
-    ("Ana", "Monitor", 1, 300),
-    ("Carlos", "Teclado", 3, 50),
-    ("Luis", "Laptop", 1, 800),
-    ("Carlos", "Mouse", 10, 20),
-]
+# Lista vacía para almacenar los registros de ventas
+ventas = []
+
+# Pedimos al usuario que ingrese la cantidad de ventas a registrar
+num_ventas = int(input("¿Cuántas ventas desea registrar? "))
+
+# Pedimos al usuario que ingrese los datos de cada venta
+for i in range(num_ventas):
+    print(f"\nRegistro de venta #{i + 1}")
+    vendedor = input("Nombre del vendedor: ")
+    producto = input("Nombre del producto: ")
+    cantidad = int(input("Cantidad vendida: "))
+    precio_unitario = float(input("Precio unitario del producto: "))
+    
+    # Agregamos la venta a la lista como una tupla
+    ventas.append((vendedor, producto, cantidad, precio_unitario))
 
 # 1. Usamos map para calcular el total por venta (cantidad * precio_unitario)
 totales_por_venta = list(map(lambda venta: venta[2] * venta[3], ventas))
-# Resultado: [1600, 100, 300, 150, 800, 200]
 
 # 2. Usamos reduce para calcular el total general de ventas
 total_general = reduce(lambda x, y: x + y, totales_por_venta)
@@ -39,6 +43,7 @@ promedio_ventas = total_general / len(totales_por_venta)
 ventas_mayores_500 = list(filter(lambda total: total > 500, totales_por_venta))
 
 # Imprimimos los resultados
+print("\n----- RESULTADOS -----")
 print("Totales por venta:", totales_por_venta)
 print("Total general de ventas:", total_general)
 print("Promedio de ventas:", promedio_ventas)
